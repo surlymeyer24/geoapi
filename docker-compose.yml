@@ -1,0 +1,30 @@
+services:
+  geoapi:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: geoapi
+    ports:
+      - "8080:8080"
+    environment:
+      - OSRM_URL=http://osrm:5000
+    networks:
+      - tpi_network
+    depends_on:
+      - osrm
+
+  osrm:
+    image: osrm/osrm-backend
+    container_name: osrm
+    command: >
+      osrm-routed --algorithm mld /data/argentina-latest.osrm
+    volumes:
+      - C:/osrm-data:/data
+    ports:
+      - "5000:5000"
+    networks:
+      - tpi_network
+
+networks:
+  tpi_network:
+    driver: bridge
