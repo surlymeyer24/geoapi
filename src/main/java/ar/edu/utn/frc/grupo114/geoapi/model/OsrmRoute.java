@@ -1,10 +1,13 @@
 package ar.edu.utn.frc.grupo114.geoapi.model;
 
-import lombok.Data;
-
-@Data
 public class OsrmRoute {
-    private double distance; // metros
-    private double duration; // segundos
-}
 
+    private double distance;
+    private double duration;
+
+    public double getDistance() { return distance; }
+    public void setDistance(double distance) { this.distance = distance; }
+
+    public double getDuration() { return duration; }
+    public void setDuration(double duration) { this.duration = duration; }
+}
